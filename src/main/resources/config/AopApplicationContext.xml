@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 数据源配置 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.24:3306/BookCentre" />
+		<property name="username" value="root" />
+		<property name="password" value="112511251" />
+	</bean>
+
+	<bean id="user" class="com.l.spring.di.model.User">
+		<property name="age" value="22"></property>
+		<property name="name" value="xzw"></property>
+		<property name="pwd" value="123456"></property>
+	</bean>
+
+	<!-- aop bean -->
+
+	<bean id="comment" class="com.l.spring.aop.aspect.Comment"></bean>
+
+	<aop:config>
+		<aop:aspect ref="comment">
+			<aop:pointcut id="NameValue"
+				expression="execution(* com.l.spring.di.model.User.getName(..))" />
+			<aop:after method="speak()" pointcut-ref="NameValue" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
