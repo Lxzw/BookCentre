@@ -19,7 +19,7 @@ public class DataSourceTest {
 			new ClassPathXmlApplicationContext("config/applicationContext.xml");
 	
 	private static final String CREATE_TABLE_BOOK = 
-			"create table book("
+			"create table user("
 			+ "id        int,"
 			+ "name      varchar(20),"
 			+ "age       int,"
