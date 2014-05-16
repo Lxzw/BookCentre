@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.l.spring.di.model.User;
 import com.l.spring.di.service.LoginService;
+import com.l.spring.di.service.SimpleAopService;
 import com.l.spring.di.service.UserService;
 
 public class UserServiceApp {
@@ -29,6 +30,12 @@ public class UserServiceApp {
 		u.setPwd("123456");
 		LoginService loginService = (LoginService)ctx.getBean("loginService");
 		assertTrue(loginService.login() == 1);
+	}
+	
+	@Test
+	public void testSimpleAopServiceImp() {
+		SimpleAopService sas = (SimpleAopService)ctx.getBean("simpleAopService");
+		sas.show();
 	}
 
 }

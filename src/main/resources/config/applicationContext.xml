@@ -1,37 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop 
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="user" class="com.l.spring.di.model.User">
-        <property name="name" value="小徐"></property>
-        <property name="age" value="26"></property>
-        <property name="pwd" value="123456"></property>   
-    </bean>
-    
-    <bean id="userService" class="com.l.spring.di.service.imp.UserServiceImp">
-        <property name="u" ref="user"></property>   
-    </bean>
-    
-    <bean id="loginService" class="com.l.spring.di.service.imp.LoginServiceImp">
-        <constructor-arg name="u" ref="user"></constructor-arg>
-    </bean>
-    
-    <!-- 切面bean -->
-    <bean id="comment" class="com.l.spring.aop.aspect.Comment"></bean>
-    
-    <aop:config>
-        <aop:aspect ref="comment">
-            <aop:pointcut id="userServiceAspect" expression="execution(*
-             com.l.spring.di.service.imp.UserServiceImp.getUserInfo())"/>
-            <aop:after method="speak()" pointcut-ref="userServiceAspect"/>
-        </aop:aspect>    
-    </aop:config>
-    
-        
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://192.168.1.24:3306/bookcentre" />
+		<property name="username" value="root" />
+		<property name="password" value="112511251" />
+		<property name="initialSize" value="5" />
+		<property name="maxActive" value="10" />
+	</bean>
+
+	<bean id="user" class="com.l.spring.di.model.User">
+		<property name="name" value="小徐"></property>
+		<property name="age" value="26"></property>
+		<property name="pwd" value="123456"></property>
+	</bean>
+
+	<bean id="userService" class="com.l.spring.di.service.imp.UserServiceImp">
+		<property name="u" ref="user"></property>
+	</bean>
+
+	<bean id="loginService" class="com.l.spring.di.service.imp.LoginServiceImp">
+		<constructor-arg name="u" ref="user"></constructor-arg>
+	</bean>
+
+	<bean id="simpleAopService" class="com.l.spring.di.service.imp.SimpleAopServiceImp">
+	</bean>
+
+	<!-- 切面bean -->
+	<bean id="comment" class="com.l.spring.aop.aspect.Comment"></bean>
+	<!-- <aop:config> -->
+	<!-- <aop:aspect ref="comment"> -->
+	<!-- <aop:pointcut id="userInfo" -->
+	<!-- expression="execution(* com.l.spring.di.service.imp.UserServiceImp.getUserInfo() -->
+	<!-- )" /> -->
+	<!-- <aop:after pointcut-ref="userInfo" -->
+	<!-- method="speak()" /> -->
+	<!-- </aop:aspect> -->
+	<!-- </aop:config> -->
+
+	<aop:config>
+		<aop:aspect ref="comment">
+			<aop:pointcut id="simpleAopSerivce"
+				expression="execution(* com.l.spring.di.service.imp.SimpleAopServiceImp.show(..))" />
+			<aop:after method="speak()" pointcut-ref="simpleAopSerivce" />
+		</aop:aspect>
+	</aop:config>
+
+
+
 
 </beans>
