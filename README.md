@@ -31,19 +31,19 @@ BookCentre
     
     4.1 pom.xml
     
-    4.1.1 spring基本依赖配置/annotation
+        4.1.1 spring基本依赖配置/annotation
     
-    4.1.2 aop基本依赖配置
+        4.1.2 aop基本依赖配置
     
-    4.1.3 数据源的依赖配置
+        4.1.3 数据源的依赖配置
     
-    4.1.4 hibernate的依赖配置
+        4.1.4 hibernate的依赖配置
     
-    4.1.5 事务配置/日志配置
+        4.1.5 事务配置/日志配置
     
-    4.1.6 spring Web配置（spring web flow）
+        4.1.6 spring Web配置（spring web flow）
     
-    4.1.7 测试环境配置
+        4.1.7 测试环境配置
 
 5. 项目管理计划
 
