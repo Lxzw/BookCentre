@@ -20,7 +20,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mappingResources">
 			<list>
-				<value>config/model/Book.hbm.xml</value>
+				<value>config/model/User.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -31,8 +31,10 @@
 		</property>
 	</bean>
 
-	<!-- 将模板类注入到DAO中，或者注入到supported类中 --> 
-<!-- 	<bean id="userDaoImp" class="com.l.spring.dao.imp.UserDaoImp"> -->
-<!-- 		<property name="jdbcTemplate" ref="jdbcTemplate"></property> -->
-<!-- 	</bean> -->
+    <bean id="user" class="com.l.spring.model.User">
+        <property name="name" value="xzw" />
+        <property name="pwd" value="123456" />
+        <property name="infoId" value="it0001" />
+    </bean>
+	
 </beans>
