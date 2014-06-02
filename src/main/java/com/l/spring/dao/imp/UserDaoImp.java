@@ -14,31 +14,46 @@ public class UserDaoImp implements UserDao {
 	@Override
 	public void insert(User user) {
 		// TODO Auto-generated method stub
-		sessionFactory.openSession().save(user);
+		sessionFactory.getCurrentSession().beginTransaction();
+		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
 	@Override
-	public List<?> get() {
+	public List<User> get() {
 		// TODO Auto-generated method stub
-		return sessionFactory.openSession().createQuery("from User u").list();
+		sessionFactory.getCurrentSession().beginTransaction();
+		List<User>	users = sessionFactory
+				.getCurrentSession()
+				.createQuery("from User u")
+				.list();
+		sessionFactory.getCurrentSession().getTransaction().commit();
+		return users;
 	}
 
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().update(user);
+		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
 	@Override
 	public User getById(long id) {
 		// TODO Auto-generated method stub
-		return (User) sessionFactory.getCurrentSession().load(User.class, id);
+		sessionFactory.getCurrentSession().beginTransaction();
+		User u = (User)sessionFactory.getCurrentSession().get(User.class,id);
+		sessionFactory.getCurrentSession().getTransaction().commit();
+		return u;
 	}
 
 	@Override
 	public void delete(User user) {
 		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().delete(user);
+		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
 	public SessionFactory getSessionFactory() {

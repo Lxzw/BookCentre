@@ -25,16 +25,23 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop> 
 			</props>
 		</property>
 	</bean>
 
     <bean id="user" class="com.l.spring.model.User">
+        <property name="id" value="1" />
         <property name="name" value="xzw" />
         <property name="pwd" value="123456" />
         <property name="infoId" value="it0001" />
+    </bean>
+    
+    <bean id="userDao" class="com.l.spring.dao.imp.UserDaoImp">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 	
 </beans>

@@ -1,11 +1,9 @@
 package com.l.spring.model;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
-import java.util.List;
 
-import javax.sql.DataSource;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -32,8 +30,16 @@ public class UserTest {
 		User user = ctx.getBean(User.class);
 		System.out.println(user.getName());
 		UserDao dao =(UserDao)ctx.getBean("userDao");
-		dao.insert(user);
-		
+		dao.insert(user); //同时运行insert和delete,delete中的user会被赋值
+		dao.delete(user);
+		user.setId(2l);
+		user.setName("zhou");
+		dao.update(user);
+		List<User> users = (List<User>) dao.get();
+		for (User u : users) {
+			System.out.println(u.getId());
+		}
+		System.out.println(dao.getById(2).getName());
 	}
 
 }
