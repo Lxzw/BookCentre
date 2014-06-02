@@ -8,5 +8,8 @@
         <id name="id" column="id">
             <generator class="native"></generator>
         </id>
-    </class>
+        <property name="name" column="name" />
+        <property name="pwd"  column="pwd" />
+        <property name="infoId" column="infoId" />
+     </class>
 </hibernate-mapping>
