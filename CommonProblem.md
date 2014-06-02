@@ -5,5 +5,7 @@
     1.1 SpringFramework: instantiation exception（在利用AOP时出现的问题）
     
         url：http://stackoverflow.com/questions/18335887/springframework-instantiation-exception
+    
+    1.2 如何提高hibernate访问数据库的速度？
        
          
