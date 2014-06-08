@@ -7,5 +7,7 @@
         url：http://stackoverflow.com/questions/18335887/springframework-instantiation-exception
     
     1.2 如何提高hibernate访问数据库的速度？
+    
+    1.3 如何在配置文件中，获得更高级别的跳转，例如点击引用对象，可以跳转到引用对象实例化的地方？
        
          
