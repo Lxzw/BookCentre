@@ -11,7 +11,6 @@ public class UserDaoImp implements UserDao {
 	
 	private SessionFactory sessionFactory;
 
-	@Override
 	public void insert(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().beginTransaction();
@@ -19,7 +18,6 @@ public class UserDaoImp implements UserDao {
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
-	@Override
 	public List<User> get() {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().beginTransaction();
@@ -31,7 +29,6 @@ public class UserDaoImp implements UserDao {
 		return users;
 	}
 
-	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().beginTransaction();
@@ -39,7 +36,6 @@ public class UserDaoImp implements UserDao {
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
-	@Override
 	public User getById(long id) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().beginTransaction();
@@ -48,7 +44,6 @@ public class UserDaoImp implements UserDao {
 		return u;
 	}
 
-	@Override
 	public void delete(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().beginTransaction();
